@@ -19,7 +19,7 @@ int main()
 	setlocale(LC_ALL,"portuguese");
 	Pessoal *p;
 	
-	p = (Pessoal*) malloc(sizeof(Pessoal*)*5);
+	p = (Pessoal*) malloc(sizeof(Pessoal)*5);
 	
 	int aux=0;
 	while(aux<5){
@@ -28,7 +28,7 @@ int main()
 		
 		printf("\nDigite um nome: ");
 		gets(p[aux].nome);
-		
+	
 		printf("\nDigite F para sexo feminino e M para sexo masculino: ");
 		gets(p[aux].sexo);
 		
@@ -37,7 +37,7 @@ int main()
 		
 		printf("\nDigite a idade da pessoa: ");
 		scanf("%d",&p[aux].idade);
-		
+
 		printf("\nDigite a sua altura: ");
 		scanf("%f",&p[aux].altura);
 		

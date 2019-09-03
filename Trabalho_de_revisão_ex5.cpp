@@ -13,19 +13,28 @@ typedef struct {
 
 void ler_dados(Aluno*a){
 	
-		int aux=0;
+	int aux=0,aux2=0;
+	
+
+	
+	
+		aux=0;
 	while(aux<5){
+		
 		fflush(stdin);
 		system("cls");
 		
 		printf("\nDigite um nome: ");
+	
 		gets(a[aux].nome);
 		
 		printf("\nDigite a matricula do aluno: ");
+	
 		scanf("%d",&a[aux].matricula);
 		
-		for(int aux2=0;aux2<3;aux2++){
+		for(aux2=0;aux2<3;aux2++){
 			printf("\nDigite as notas do aluno: ");
+		
 			scanf("%d",&a[aux].notas[aux2]);
 		}
 	
@@ -56,10 +65,10 @@ int main()
 {
 	setlocale(LC_ALL,"portuguese");
 	Aluno *a;
+
+	a = (Aluno*) malloc(sizeof(Aluno)*5);
 	
-	a = (Aluno*) malloc(sizeof(Aluno*)*5);
-	
-	ler_dados(&*a);
-	mostrar_dados(&*a);
+	ler_dados(a);
+	mostrar_dados(a);
 	
 }
