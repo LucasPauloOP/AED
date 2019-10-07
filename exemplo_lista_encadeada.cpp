@@ -35,14 +35,14 @@ void insertEnd (Lista *list, Item x)//insere um elemento no final da lista
 	list->ultimo->proximo = NULL;
 }
 
-void printList(Lista *list)//função para mostrar todos os elementos da lista
+void printList(Lista list)//função para mostrar todos os elementos da lista
 {
-
-	while(list->ultimo->proximo==NULL)
+	Celula *aux;
+	aux = list.primeiro->proximo;
+	while(aux != NULL)
 	{
-		list->primeiro = list->primeiro->proximo;
-		printf("%d-",list->primeiro->elemento);
-		
+		printf("%d-",aux->elemento.chave);
+		aux = aux->proximo;
 	}
 }
 
@@ -71,7 +71,7 @@ int main()
 		
 	}
 	
-	printList(&list);//mostra os elementos da lista que é passada por referencia
+	printList(list);//mostra os elementos da lista que é passada por referencia
 	
 	if(list.primeiro == NULL && list.ultimo == NULL)//checa se é vazia
 	{
