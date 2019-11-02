@@ -18,33 +18,33 @@ typedef struct {
 int main()
 {
 	setlocale(LC_ALL,"portuguese");
-	Voo *v;
+	Voo v;
 	
-	v = (Voo*) malloc(sizeof(Voo*));
+
 	
 	printf("\nDigite a cidade de origem: ");
-	gets(v->cidadeOrigem);
+	gets(v.cidadeOrigem);
 	
 	printf("\nDigite a cidade de destino: ");
-	gets(v->cidadeDestino);
+	gets(v.cidadeDestino);
 	
 	printf("\nDigite a data de partida: ");
-	gets(v->data);
+	gets(v.data);
 	
 	printf("\nDigite a horário de partida: ");
-	gets(v->partida);
+	gets(v.partida);
 	
 	printf("\nDigite a horário de chegada: ");
-	gets(v->chegada);
+	gets(v.chegada);
 	
 	printf("\nDigite o valor da passagem: ");
-	scanf("%d",&v->valor);
+	scanf("%d",&v.valor);
 	
-	printf("\nA cidade de origem digitada foi: %s",v->cidadeOrigem);
-	printf("\nA cidade de chegada digitado foi: %s",v->cidadeDestino);
-	printf("\nA data digitada foi: %s",v->data);
-	printf("\nA horário de partida digitada foi: %s",v->partida);
-	printf("\nA horário de chegada digitada foi: %s",v->chegada);
-	printf("\nO valor da passagem digitada foi: R$ %d",v->valor);
+	printf("\nA cidade de origem digitada foi: %s",v.cidadeOrigem);
+	printf("\nA cidade de chegada digitado foi: %s",v.cidadeDestino);
+	printf("\nA data digitada foi: %s",v.data);
+	printf("\nA horário de partida digitada foi: %s",v.partida);
+	printf("\nA horário de chegada digitada foi: %s",v.chegada);
+	printf("\nO valor da passagem digitada foi: R$ %d",v.valor);
 	
 }
