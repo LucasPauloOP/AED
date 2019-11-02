@@ -15,7 +15,7 @@ int main()
 	setlocale(LC_ALL,"portuguese");
 	Registro *r;
 	
-	r = (Registro*) malloc(sizeof(Registro*)*5);
+	r = (Registro*) malloc(sizeof(Registro)*5);
 	
 	int aux=0;
 	while(aux<5){
