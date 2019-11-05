@@ -25,10 +25,12 @@ int VerificaFilaVazia(Fila *fila){
 }
 
 void enfileira(Fila *fila, Item x){
+
 	fila->tras->proximo = (Celula *)malloc(sizeof(Celula));
 	fila->tras = fila->tras->proximo;
 	fila->tras->elemento = x;
 	fila->tras->proximo = NULL;
+
 }
 
 void desenfileira(Fila *fila, Item *x)
@@ -59,11 +61,32 @@ void imprimirFila(Fila fila){
 	}
 }
 
+void CopiaFila(Fila fila,Fila fila2){
+	Celula *aux;
+	aux = fila.frente->proximo;
+	Item item;
+	
+	
+	
+	while(aux!= NULL)
+	{
+	
+		item = aux->elemento;
+		enfileira(&fila2,item);
+		aux = aux->proximo;
+		desenfileira(&fila,&item);
+
+	}
+	
+	imprimirFila(fila2);
+}
+
 int main(){
-	Fila fila;
+	Fila fila,fila2;
 	Item num;
 	
 	CriarFilaVazia(&fila);
+	CriarFilaVazia(&fila2);
 	VerificaFilaVazia(&fila);
 	
 	int aux=0;
@@ -75,10 +98,11 @@ int main(){
 		aux++;
 	}
 	
-	printf("\nAntes de desinfileirar: \n");
+	printf("\nAntes de Copiar: \n");
 	imprimirFila(fila);
 	
-	printf("\nDepois de desinfileirar: \n");
-	desenfileira(&fila,&num);
-	imprimirFila(fila);
+	printf("\nDepois de Copiar: \n");
+	//desenfileira(&fila,&num);
+	CopiaFila(fila,fila2);
+	//imprimirFila(fila2);
 }
