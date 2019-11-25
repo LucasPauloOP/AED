@@ -4,7 +4,7 @@
 
 typedef struct {
 	int chave;
-	/*Resto da implementação do struct*/
+	/*Resto da implementaçao do struct*/
 }Item;
 
 typedef struct Celula{
@@ -62,14 +62,37 @@ void imprimirListaAnt(Lista lista){
 		printf("\nlista vazia\n");	
 	}
 	else{
-		while(lista.ultimo != lista.primeiro)
+		while(aux != lista.primeiro)
 		{
 			
-			printf("\n%d-",lista.ultimo->elemento.chave);
-			lista.ultimo = lista.ultimo->anterior;
+			printf("%d-",aux->elemento.chave);
+			aux = aux->anterior;
 			
 		}
 	}
+}
+
+void retirarFinal(Lista *lista, Item *elemento){
+	Celula *aux;
+	if(ChecaLDEVazia(*lista)){
+		printf("\nlista vazia\n");	
+	}
+	
+	else{
+		aux = lista->ultimo;
+		lista->ultimo = lista->ultimo->anterior;
+		lista->ultimo->proximo = NULL;
+		*elemento = aux->elemento;
+		free(aux);
+	}
+}
+
+void insereInicio(Lista *lista,Item *chave){
+	Celula *aux;
+	aux = lista->primeiro;
+	lista->primeiro = lista->primeiro->proximo;
+	lis
+	
 }
 
 int main(){
@@ -87,7 +110,11 @@ int main(){
 	InsereFinalLDE(&l1, x);
 	
 	imprimirListaProx(l1);
-	
+	printf("\n");
 	imprimirListaAnt(l1);
+	retirarFinal(&l1,&x);
+	printf("\n");
+	imprimirListaProx(l1);
+	
 	
 }
