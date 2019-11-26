@@ -87,15 +87,105 @@ void retirarFinal(Lista *lista, Item *elemento){
 	}
 }
 
-void insereInicio(Lista *lista,Item *chave){
+void insereInicio(Lista *lista,Item chave){
+	
 	Celula *aux;
-	aux = lista->primeiro;
-	lista->primeiro = lista->primeiro->proximo;
-	lis
+	aux = (Celula*) malloc(sizeof(Celula));
+	
+	aux->proximo = lista->primeiro->proximo;
+	lista->primeiro->proximo->anterior = aux;
+	
+	lista->primeiro->proximo = aux;
+	aux->anterior = lista->primeiro;
+	
+	aux->elemento = chave;
+
+}
+
+void retirarInicio(Lista *lista) {
+	
+	if(ChecaLDEVazia(*lista))	{
+		printf("Lista vazia...");
+	}
+	else{
+		
+		Celula *aux;
+		aux = lista->primeiro->proximo;
+
+		lista->primeiro->proximo = aux->proximo;
+		aux->proximo->anterior = lista->primeiro;
+	
+		free(aux);
+	}
+
+}
+
+void inserirPosicao(Lista *lista,Item x, int pos) {
+	
+	if(ChecaLDEVazia(*lista) || pos == 0)	{
+		insereInicio(lista,x);
+	}
+	else{
+		Celula *aux,*aux2;
+		aux= lista->primeiro->proximo;
+		
+		int count =0;
+		while(count<pos){
+			aux = aux->proximo;
+			count++;
+		}
+		
+		if(aux->proximo == NULL){
+			InsereFinalLDE(lista, x);
+		}
+			
+		aux2 = (Celula*) malloc(sizeof(Celula));
+		aux2->elemento = x;
+		aux2->proximo = aux;
+		aux2->anterior = aux->anterior;
+		aux->anterior->proximo = aux2;
+		aux->anterior = aux2;
+			
+	}
 	
 }
 
+void retiraPosicao (Lista *lista,Item *elemento,int pos) {
+	if(ChecaLDEVazia(*lista))	{
+		printf("Lista vazia...");
+	}
+	else{
+		
+		Celula *aux,*aux2;
+		aux= lista->primeiro->proximo;
+		
+		if(aux->proximo == NULL)
+			retirarInicio(lista);
+			
+		else{
+			
+			int count =0;
+			
+			while(count<pos){
+				aux = aux->proximo;
+				count++;
+			}
+			
+			if(aux->proximo == NULL)
+				retirarFinal(lista,elemento);
+				
+			aux2 = aux->proximo;
+			aux2->anterior = aux->anterior;
+			aux->anterior->proximo = aux2;
+			
+			free(aux);
+		}
+		
+	}
+}
+
 int main(){
+	
 	Lista l1;
 	Item x;
 	CriarLDEVazia(&l1);
@@ -111,9 +201,29 @@ int main(){
 	
 	imprimirListaProx(l1);
 	printf("\n");
+	
 	imprimirListaAnt(l1);
-	retirarFinal(&l1,&x);
+	
+	//retirarFinal(&l1,&x);
 	printf("\n");
+	//imprimirListaProx(l1);
+	
+	x.chave = 70;
+	insereInicio(&l1,x);
+	imprimirListaProx(l1);
+	
+	printf("\n");
+	retirarInicio(&l1);
+	imprimirListaProx(l1);
+	
+	printf("\n");
+	x.chave = 70;
+	inserirPosicao(&l1,x,1);
+	imprimirListaProx(l1);
+	
+	printf("\n");
+	printf("\n");
+	retiraPosicao(&l1,&x,1);
 	imprimirListaProx(l1);
 	
 	
